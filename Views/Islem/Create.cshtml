@@ -1,0 +1,70 @@
+﻿@model crud.Models.Islem
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Islem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="HesapNumarasi" class="control-label"></label>
+                <input asp-for="HesapNumarasi" class="form-control" />
+                <span asp-validation-for="HesapNumarasi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AliciIsim" class="control-label"></label>
+                <input asp-for="AliciIsim" class="form-control" />
+                <span asp-validation-for="AliciIsim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankaIsim" class="control-label"></label>
+              @*  <input asp-for="BankaIsim" class="form-control" />*@
+              <select asp-for="BankaIsim" class="form-control"  >
+                
+                  @{
+                      foreach (string item in ViewBag.bankaIsımleri as List<string>)
+                        {
+                            <option>
+                            @item
+                            </option>
+                        }
+                  }
+              </select>
+               
+                <span asp-validation-for="BankaIsim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SwiftCode" class="control-label"></label>
+                <input asp-for="SwiftCode" class="form-control" />
+                <span asp-validation-for="SwiftCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Miktar" class="control-label"></label>
+                <input asp-for="Miktar" class="form-control" />
+                <span asp-validation-for="Miktar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tarih" class="control-label"></label>
+                <input asp-for="Tarih" class="form-control" />
+                <span asp-validation-for="Tarih" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
